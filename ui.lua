@@ -51,6 +51,12 @@ function ui.load()
         width = 20,
         height = 10,
     }
+    saveButton = {
+        x = love.graphics.getWidth() - 170,
+        y = love.graphics.getHeight() - 22,
+        width = 150,
+        height = 22,
+    }
 end
 
 function ui.menuBar()
@@ -58,6 +64,7 @@ function ui.menuBar()
     love.graphics.setColor(color.uiBorder)
     love.graphics.rectangle('line', 0, love.graphics.getHeight() - 22, love.graphics.getWidth(), 22)
     ui.colorButton()
+    ui.saveButton()
     love.graphics.setCanvas(screen.canvas)
 end
 
@@ -106,15 +113,26 @@ function ui.buttonDetection(x, y, k)
                 color.paintRGBA.b = bVal/10
             end
 		end
+        if x >= saveButton.x and y >= saveButton.y and x < saveButton.x+saveButton.width and y < saveButton.y+saveButton.height then
+			screen.saveImage()
+		end
 	end
 end
 
+function ui.saveButton()
+    love.graphics.setColor(color.backgroundColor)
+    love.graphics.rectangle('fill', saveButton.x, saveButton.y, saveButton.width, saveButton.height)
+    love.graphics.setColor(color.uiBorder)
+    love.graphics.rectangle('line', saveButton.x, saveButton.y, saveButton.width, saveButton.height)
+    love.graphics.draw(love.graphics.newText(love.graphics.getFont(), "Save Image" ), saveButton.x + 40, saveButton.y + 2, 0, 1, 1)
+end
+
 function ui.colorButton()
+    love.graphics.setColor(colorButton.c)
+    love.graphics.rectangle('fill', colorButton.x, colorButton.y, colorButton.width, colorButton.height)
     love.graphics.setColor(color.uiBorder)
     love.graphics.rectangle('line', 0, love.graphics.getHeight() - 22, 150, 22)
     love.graphics.draw(love.graphics.newText(love.graphics.getFont(), "Change Color" ), 35, love.graphics.getHeight() - 20, 0, 1, 1)
-    love.graphics.setColor(colorButton.c)
-    love.graphics.rectangle('fill', colorButton.x, colorButton.y, colorButton.width, colorButton.height)
 end
 
 function ui.colorButtonAction()
