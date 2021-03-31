@@ -22,17 +22,13 @@ function love.update(dt)
     paint.brush()
 end
 
-function love.keypressed(key)
-    if key == 'p' then
-        screen.saveImage()
-    end
-end
-
 function love.mousepressed(x, y, button)
     ui.buttonDetection(x, y, button)
 end
 
 function love.draw()
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.draw(love.graphics.newImage('transparent.png'), 0, 0, 0, 720/32, 720/32)
     love.graphics.draw(screen.canvas)
     love.graphics.draw(screen.cursorCanvas)
     love.graphics.setCanvas(screen.cursorCanvas)
@@ -43,14 +39,9 @@ function love.draw()
     love.graphics.setCanvas(screen.canvas)
     love.graphics.clear()
     love.graphics.origin()
-    love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.draw(love.graphics.newImage('transparent.png'), 0, 0, 0, 720/32, 720/32)
     main.canvas()
     main.ui()
     love.graphics.setCanvas()
-    love.graphics.setColor(1,1,1,1)
-    love.graphics.print(tostring(paint.selectedTile), 0, 0)
-    love.graphics.setColor(color.backgroundColor)
 end
 
 function main.ui()
