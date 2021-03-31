@@ -13,6 +13,7 @@ function love.load()
     paint.load()
     cursor.load()
     ui.load()
+    love.graphics.setDefaultFilter('nearest', 'nearest')
 end
 
 function love.update(dt)
@@ -47,7 +48,7 @@ function love.draw()
     main.canvas()
     main.ui()
     love.graphics.setCanvas()
-    love.graphics.setColor(0,0,0,1)
+    love.graphics.setColor(1,1,1,1)
     love.graphics.print(tostring(paint.selectedTile), 0, 0)
     love.graphics.setColor(color.backgroundColor)
 end
